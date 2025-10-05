@@ -1,0 +1,96 @@
+/* ===== Base / 2025 glass ===== */
+:root{
+  --bg:#0b0e15; --ink:#eaf2ff; --muted:#9fb0c8;
+  --card:rgba(24,29,44,.55); --glass:rgba(24,29,44,.35);
+  --stroke:rgba(255,255,255,.12);
+  --accent:#7dd3fc; --accent2:#c084fc; --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+  --radius:18px;
+  --nav-h:64px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    radial-gradient(1000px 700px at 100% -10%, rgba(124,58,237,.15), transparent 40%),
+    radial-gradient(1000px 700px at -10% 100%, rgba(14,165,233,.15), transparent 45%),
+    linear-gradient(180deg, #0b0e15 0%, #0b0e15 100%);
+  color:var(--ink);
+  padding-top: var(--safe-top);
+  padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 28px);
+}
+#app{max-width:428px;margin:0 auto;position:relative;min-height:100%}
+.topbar{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter: blur(14px);
+  background:linear-gradient(180deg, rgba(10,13,20,.9), rgba(10,13,20,.4));
+  border-bottom:1px solid var(--stroke);
+  padding:12px 12px 10px;
+}
+.day-switch{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.day-switch button{background:var(--glass); color:var(--ink); border:1px solid var(--stroke); padding:8px 12px; border-radius:999px; font-size:18px}
+.day-title{display:flex;flex-direction:column;align-items:center;min-width:140px}
+.day-label{background:transparent;border:none;color:var(--ink);display:flex;flex-direction:column;align-items:center}
+.day-title span{font-weight:700;font-size:18px}
+.day-title small{color:var(--muted)}
+.rings{display:flex;gap:10px;justify-content:center;margin-top:10px}
+.ring{position:relative;width:84px;height:84px}
+.ring svg{width:84px;height:84px;transform:rotate(-90deg)}
+.ring .bg{fill:none;stroke:var(--stroke);stroke-width:6}
+.ring .fg{fill:none;stroke:var(--accent);stroke-linecap:round;stroke-width:6;stroke-dasharray:119 119;stroke-dashoffset:119;transition:stroke-dashoffset .3s}
+.ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700}
+.ring-text small{color:var(--muted);font-weight:500}
+
+.content{padding:12px 8px 80px} /* big bottom padding so last card is visible above nav */
+.note{background:var(--card);border:1px solid var(--stroke);padding:10px 12px;border-radius:var(--radius);margin-bottom:10px}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.item{background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);padding:10px;display:flex;gap:10px;align-items:flex-start}
+/* Fancy checkboxes */
+.item input[type="checkbox"]{appearance:none;-webkit-appearance:none; width:22px;height:22px;border-radius:8px;border:2px solid var(--stroke);background:rgba(255,255,255,.03);position:relative;flex:0 0 22px}
+.item input[type="checkbox"]:checked{background:linear-gradient(135deg, var(--accent), var(--accent2));border-color:transparent}
+.item input[type="checkbox"]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#06151e;font-weight:900;font-size:16px}
+.item .txt{flex:1}
+.item .txt .title{font-weight:600}
+.item .txt .sub{color:var(--muted);font-size:14px;margin-top:6px}
+.sub .exo{color:var(--ink)}
+.sub .hint{color:#9cc8ff}
+.muted{color:var(--muted)}
+
+/* Subtabs + tables */
+.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.subtabs button{background:var(--glass);border:1px solid var(--stroke);padding:8px 10px;border-radius:12px;color:var(--ink)}
+.subtabs button.active{background:linear-gradient(135deg, var(--accent), var(--accent2));color:#05101a;border-color:transparent}
+.tablewrap{overflow:auto;border:1px solid var(--stroke);border-radius:12px;background:var(--card)}
+.tablewrap table{border-collapse:separate;border-spacing:0;width:100%;min-width:980px}
+.tablewrap th,.tablewrap td{border-bottom:1px solid var(--stroke);padding:6px 8px;text-align:left;font-size:14px;white-space:nowrap}
+.tablewrap th{position:sticky;top:0;background:rgba(15,20,30,.7);backdrop-filter:blur(10px);z-index:2}
+.tablewrap td:first-child, .tablewrap th:first-child{position:sticky;left:0;background:rgba(15,20,30,.85);z-index:3}
+/* Fit mode — no horizontal scroll: force fixed layout & tiny columns */
+.tablewrap.fit{overflow-x:hidden}
+.tablewrap.fit table{table-layout:fixed;min-width:100%}
+.tablewrap.fit th,.tablewrap.fit td{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;padding:6px 6px}
+
+/* Tabs nav */
+.bottombar{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:0;z-index:20;height:var(--nav-h);width:100%;max-width:428px;
+  display:flex;gap:8px;align-items:center;justify-content:space-around;
+  padding:8px 10px calc(8px + var(--safe-bottom));
+  background:linear-gradient(180deg, rgba(10,13,20,.2), rgba(10,13,20,.8));
+  backdrop-filter:blur(14px);border-top:1px solid var(--stroke);
+}
+.bottombar button{flex:1;background:var(--glass);border:1px solid var(--stroke);color:var(--ink);padding:10px;border-radius:14px;font-weight:700}
+.bottombar button.active{background:linear-gradient(135deg, var(--accent), var(--accent2));color:#05101a;border-color:transparent}
+
+.tab{display:none}
+.tab.active{display:block}
+
+/* Overlay day picker */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+.overlay.hidden{display:none}
+.sheet{width:100%;max-width:428px;background:#0f1420;border-top-left-radius:20px;border-top-right-radius:20px;border:1px solid var(--stroke);padding:12px}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.iconbtn{background:transparent;border:1px solid var(--stroke);border-radius:12px;padding:6px 10px;color:var(--ink)}
+.day-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-height:60vh;overflow:auto}
+.day-grid button{background:var(--glass);border:1px solid var(--stroke);border-radius:12px;color:var(--ink);padding:10px 8px;text-align:center}
+.day-grid button .mini{display:block;color:var(--muted);font-size:12px;margin-top:4px}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/><title>Winter Arc 90 — трекер</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="day-switch">
+        <button id="prevDay" aria-label="предыдущий день">‹</button>
+        <div class="day-title">
+          <button id="openPicker" class="day-label"><span id="dayLabel">День 1</span><small id="dayOf90">1 / 90</small></button>
+        </div>
+        <button id="nextDay" aria-label="следующий день">›</button>
+      </div>
+      <div class="rings">
+        <div class="ring" id="todayRing">
+          <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="bg"/><circle cx="22" cy="22" r="19" class="fg"/></svg>
+          <div class="ring-text"><span id="todayPct">0%</span><small>сегодня</small></div>
+        </div>
+        <div class="ring" id="allRing">
+          <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="bg"/><circle cx="22" cy="22" r="19" class="fg"/></svg>
+          <div class="ring-text"><span id="allPct">0%</span><small>за 90 дней</small></div>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="content">
+      <section id="tab-day" class="tab active">
+        <div class="note note-water">💧 Цель: выпить ≥ 3 литров воды сегодня.</div>
+        <div class="note">🎥 В свободное время: делай видео в TikTok.</div>
+        <ul id="checklist" class="list"></ul>
+      </section>
+
+      <section id="tab-winterarc" class="tab">
+        <h2>WinterArc — таблицы</h2>
+        <div id="winterTabs" class="subtabs"></div>
+        <div id="winterTable" class="tablewrap"></div>
+      </section>
+    </main>
+
+    <nav class="bottombar">
+      <button data-tab="tab-day" class="active">День</button>
+      <button data-tab="tab-winterarc">WinterArc</button>
+    </nav>
+
+    <!-- Day Picker Overlay -->
+    <div id="dayPicker" class="overlay hidden">
+      <div class="sheet">
+        <div class="sheet-head">
+          <span>Выбери день</span>
+          <button id="closePicker" class="iconbtn">✕</button>
+        </div>
+        <div id="dayGrid" class="day-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  document.documentElement.style.setProperty('--safe-top', (window.CSS && CSS.supports('top: env(safe-area-inset-top)')) ? 'env(safe-area-inset-top)' : '0px');
+  document.documentElement.style.setProperty('--safe-bottom', (window.CSS && CSS.supports('bottom: env(safe-area-inset-bottom)')) ? 'env(safe-area-inset-bottom)' : '0px');
+  </script>
+<script src="./app_updated.js"></script>
+</body>
+</html>
