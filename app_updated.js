@@ -3143,8 +3143,8 @@ function defaultDayTasks(dayIndex) {
   return [
     { id:'wake', title:'проснулся в 06:00', count:true },
     { id:'wash', title:'умылся и зубы почистил', count:true },
-    { id:'coffee', title:'собрался и сделал кофе', count:true },
-    { id:'supps', title:'выпил таблетки и бады', count:true },
+    { id:'coffee', title:'выпил таблетки и бады', count:true },
+    { id:'supps', title:'собрался и сделал кофе', count:true },
     { id:'goout', title:'приехал на тренировку в (зал)', count:true },
     { id:'am_training', title: morningLabel(dayIndex), sub: formatTraining(morningPlanItems(dayIndex)), count:true },
     { id:'coldshower_am', title:'пришел с тренировки и искупался в холодной воде', count:true },
